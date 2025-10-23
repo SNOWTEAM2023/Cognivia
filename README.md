@@ -3,8 +3,10 @@
 
 ### PsyQA 完整数据集
 
-由于GitHub文件大小限制，完整的PsyQA数据集存储在清华云盘：
+由于文件大小限制，PsyQA数据集通过百度网盘分享：
 
-- **下载地址**: [https://cloud.tsinghua.edu.cn/d/40afb0417a5b437da970/](https://cloud.tsinghua.edu.cn/d/40afb0417a5b437da970/)
-- **文件说明**: 包含完整的PsyQA数据集文件
-- **访问说明**: 点击链接即可下载
+**下载信息：**
+-  **文件名称**: `PsyQA.zip`
+-  **百度网盘链接**: https://pan.baidu.com/s/17om1k5uSVGCswdzV6-d6CQ?pwd=jh3d
+-  **提取码**: `jh3d`
+-  **文件说明**: 包含完整的PsyQA数据集
