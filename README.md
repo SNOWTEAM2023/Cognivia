@@ -10,3 +10,6 @@
 -  **百度网盘链接**: https://pan.baidu.com/s/17om1k5uSVGCswdzV6-d6CQ?pwd=jh3d
 -  **提取码**: `jh3d`
 -  **文件说明**: 包含完整的PsyQA数据集
+
+### CBT_dataset_v2
+**从v1版本补充，从CBT-BOOK中筛选数据，提高了数据集数量**
