@@ -16,3 +16,12 @@
 
 ### filter_prompt.txt
 **用于从physa数据集中筛选并分类的prompt**
+
+### response_prompt.txt
+**用于给出理性回应的prompt**
+
+### prompt_pinggu.xlsx
+**评估筛选分类见表一，评估理性回应见表二**
+
+### test41.xlsx test70.xlsx
+**评估筛选分类过程**
