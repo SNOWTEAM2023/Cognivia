@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/SNOWTEAM2023/GEM/main/materials/cognivia.jpg" width="400">
+</p>
+
+
 # Cognitive-Behavioral-Therapy
 ## 数据集
 
