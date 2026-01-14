@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/SNOWTEAM2023/GEM/main/materials/cognivia.jpg" width="400">
+  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/cognivia.png" width="400">
 </p>
 
 
