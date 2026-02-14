@@ -15,12 +15,11 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Xuejiao
 
 \* Corresponding author
 
-[![Stargazers repo roster for @SNOWTEAM2023/GEM](https://reporoster.com/stars/SNOWTEAM2023/GEM)](https://github.com/SNOWTEAM2023/GEM/stargazers)
-
 <p align="center">
-  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/Cognivia_UI.png" width="800">
+  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/Cognivia_UI.png" width="600">
 </p>
 
+[![Stargazers repo roster for @SNOWTEAM2023/GEM](https://reporoster.com/stars/SNOWTEAM2023/GEM)](https://github.com/SNOWTEAM2023/GEM/stargazers)
 
 
 ## :fire: News
