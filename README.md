@@ -30,21 +30,30 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Xuejiao
     <p><em>Figure 1:  The overall framework of Cognivia.</em></p >
 
 The pipeline of our model is shown in Fig. 1 which consists of three stages: 
-- **(1) CBT Expert Seed Curation**: Curate CBT literatures to form high quality *CBT Cognitive Triplet Dataset* as reference seed.
+- **(1) CBT Expert Seed Curation**: Curate CBT literatures to form high quality [*CBT Cognitive Triplet Dataset*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx) as reference seed.
 - **(2) CBT Cognitive Triplet Dataset Augmentation**: Multi-stage prompting and structured generation to augment mental health questions from PsyQA dataset to generate *Augmented CBT Cognitive Triplet Dataset*.
 - **(3) Task-oriented LoRA Fine-tuning**: Fine-tuning large language models by *Augmented CBT Cognitive Triplet Dataset* to obtain **Cognivia** for cognitive distortion identification and rational response generation.
 
 ## Dataset
-1. [**CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx): Our work is based on authoritative texts that are widely regarded as
-core paradigms and standard references in CBT. From these sources, we extract a well-established
-taxonomy of cognitive distortions and further integrate complementary insights from other seminal works in the field.
-This taxonomy is operationalized through explicit category definitions, annotation guidelines, decision rules, and illustrative examples to ensure consistent application in data construction and
-analysis. Using this structured framework, we curate a high-quality seed dataset of representative CBT question–answer pairs, each
-annotated with specific cognitive distortion labels (e.g., catastrophizing, overgeneralization, mind reading). These carefully selected
-exemplars, aligned with CBT principles and therapeutic framing, are incorporated into structured prompt templates 𝑃𝑖 that encode
-expert-informed CBT reasoning patterns. These templates guide downstream model generation to maintain theoretical consistency and adherence to clinical guidelines.
+1. [**CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx): 
+Our work is based on authoritative texts that are widely regarded as core paradigms and standard
+references in CBT.
+Using these resources, we curate a high-quality seed cognitive triplet dataset of representative CBT question–answer pairs
+and corresponding rational response.
+The seed dataset is constructed based on established theoretical frameworks and clinical guidelines,
+which is why we refer to our approach as **evidence-based**.
+The form of this *CBT Cognitive Triplet Dataset*:
 
-2. **Augmented CBT Cognitive Triplet Dataset**:
+```jsonl
+{"Thought": "...", "Cognitive Distortion": "...", "Rational Response": "..."}
+```
+
+2. [**Augmented CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/Aug_CBT_Cognitive_Triplet_Dataset.xlsx):
+The form of this *Augmented CBT Cognitive Triplet Dataset*:
+
+```jsonl
+{"Thought": "...", "Cognitive Distortion": "...", "Rational Response": "..."}
+```
 
 
 ### ✨ Code Structure
@@ -75,10 +84,7 @@ Cognivia/
 ```
 
 ## Usage
-## Experiments
-# Main results
 
-## Evaluation
 
 ## 🔑 License
 This work is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
