@@ -49,8 +49,8 @@ GEM/
 │   ├── filter_prompt.txt       # Prompt_1 of CBT Cognitive Triplet Dataset Augmentation (Cognitve Distortion Labelling)
 │   └── response_prompt.txt     # Prompt_2 of CBT Cognitive Triplet Dataset Augmentation (Rational Pesponse Generation)
 
-├── data/                       # Data
-│   └── preference_data.jsonl
+├── data/                       
+│   └── CBT_Cognitive_Triplet_Dataset.xlsx # CBT Cognitive Triplet Dataset curated from CBT Literatures
 │
 ├── src/                        # Core implementation of GEM
 │   ├── __init__.py
