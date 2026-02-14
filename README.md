@@ -45,6 +45,10 @@ The code structure and corresponding comments of this repository are as follows:
 ```
 GEM/
 ├── GEM.py                      # Main entry script for running GEM
+├── prompts
+│   ├── filter_prompt.txt       # Prompt_1 of CBT Cognitive Triplet Dataset Augmentation (Cognitve Distortion Labelling)
+│   └── response_prompt.txt     # Prompt_2 of CBT Cognitive Triplet Dataset Augmentation (Rational Pesponse Generation)
+
 ├── data/                       # Data
 │   └── preference_data.jsonl
 │
