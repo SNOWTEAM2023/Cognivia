@@ -27,12 +27,12 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Xuejiao
 <p align="center">
   <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/overview.jpg" width="1000">
 </p>
-**GEM** aligns base LLM using human preference data by a **Coginitive Feedback Loop**, which includes **Cognitive Filtering** and **SEGA** modules.
+    <p><em>Figure 1:  The overall framework of Cognivia.</em></p >
 
-Key modules of GEM include:
-
-- **Cognitive Filtering**: Generate `k` Chain-of-Thought (CoTs) candidates per query and **rank** them by Entropy-guided Token Scoring module. Entropy-guided Token Scoring module encourages **exploration mid‑CoT** (high entropy on top‑m steps) and **confidence at the end** (low final entropy).
-- **SEGA**: A **listwise** objective that updates the policy using **group-mean–centered advantages**, which update with weights proportional to **Aᵢ = rᵢ − r̄** within each k-way group.
+The pipeline of our model is shown in Fig. 1 which consists of three stages: 
+- **(1) CBT Expert Seed Curation**: Curate CBT literatures to form high quality *CBT Cognitive Triplet Dataset* as reference seed.
+- **(2) CBT Cognitive Triplet Dataset Augmentation**: Multi-stage prompting and structured generation to augment mental health questions from PsyQA dataset to generate *Augmented CBT Cognitive Triplet Dataset*.
+- **(3) Task-oriented LoRA Fine-tuning**: Fine-tuning large language models by *Augmented CBT Cognitive Triplet Dataset* to obtain **Cognivia** for cognitive distortion identification and rational response generation.
 
 ## Dataset
 1. **CBT Cognitive Triplet Dataset**:
@@ -43,16 +43,16 @@ Key modules of GEM include:
 The code structure and corresponding comments of this repository are as follows:
 
 ```
-GEM/
-├── GEM.py                      # Main entry script for running GEM
+Cognivia/
+├── Cognivia.py                      # Main entry script for running Cognivia
 ├── prompts
 │   ├── filter_prompt.txt       # Prompt_1 of CBT Cognitive Triplet Dataset Augmentation (Cognitve Distortion Labelling)
 │   └── response_prompt.txt     # Prompt_2 of CBT Cognitive Triplet Dataset Augmentation (Rational Pesponse Generation)
-
+│
 ├── data/                       
 │   └── CBT_Cognitive_Triplet_Dataset.xlsx # CBT Cognitive Triplet Dataset curated from CBT Literatures
 │
-├── src/                        # Core implementation of GEM
+├── src/                        # Core implementation of Cognivia
 │   ├── __init__.py
 │   ├── config.py               # Configuration utilities
 │   ├── dataset.py              # Dataset & dataloader definitions
