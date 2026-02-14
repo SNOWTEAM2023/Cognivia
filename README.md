@@ -49,13 +49,25 @@ The form of this *CBT Cognitive Triplet Dataset*:
 ```
 
 2. [**Augmented CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/Aug_CBT_Cognitive_Triplet_Dataset.xlsx):
+This dataset is based on [**PsyQA**](https://github.com/thu-coai/PsyQA), 
+a large-scale psychological question-answering dataset collected from publicly accessible
+online mental health forums. PsyQA consists of anonymized user-generated question–answer pairs
+related to psychological concerns as the following form:
+
+```jsonl
+{"Question": "...", "Answer": "..."}
+```
+
+For each question *𝑞𝑖* in PsyQA, we employ the DeepSeek with expert-designed
+[*prompt_1*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/prompts/filter_prompt.txt) to identify the
+corresponding cognitive distortion *𝑑𝑖*, and use ChatGPT with
+[prompt_2][*prompt_1*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/prompts/response_prompt.txt) to generate a
+corresponding rational response *𝑟𝑖*. 
 The form of this *Augmented CBT Cognitive Triplet Dataset*:
 
 ```jsonl
 {"Thought": "...", "Cognitive Distortion": "...", "Rational Response": "..."}
 ```
-
-
 
 ### ✨ Code Structure
 The code structure and corresponding comments of this repository are as follows:
