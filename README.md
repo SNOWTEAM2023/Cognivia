@@ -25,7 +25,7 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Xuejiao
 
 ## 🧭 Framework Overview
 <p align="center">
-  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/overview.jpg" width="400">
+  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/overview.jpg" width="1000">
 </p>
 **GEM** aligns base LLM using human preference data by a **Coginitive Feedback Loop**, which includes **Cognitive Filtering** and **SEGA** modules.
 
