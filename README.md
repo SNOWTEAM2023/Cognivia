@@ -34,7 +34,7 @@ The pipeline of our model is shown in Fig. 1 which consists of three stages:
 - **(2) CBT Cognitive Triplet Dataset Augmentation**: Multi-stage prompting and structured generation to augment mental health questions from PsyQA dataset to generate *Augmented CBT Cognitive Triplet Dataset*.
 - **(3) Task-oriented LoRA Fine-tuning**: Fine-tuning large language models by *Augmented CBT Cognitive Triplet Dataset* to obtain **Cognivia** for cognitive distortion identification and rational response generation.
 
-## Dataset
+## 📊 Dataset
 1. [**CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx): 
 Our work is based on authoritative texts that are widely regarded as core paradigms and standard
 references in CBT.
@@ -54,6 +54,7 @@ The form of this *Augmented CBT Cognitive Triplet Dataset*:
 ```jsonl
 {"Thought": "...", "Cognitive Distortion": "...", "Rational Response": "..."}
 ```
+
 
 
 ### ✨ Code Structure
@@ -83,7 +84,16 @@ Cognivia/
 └── requirements.txt            # Python dependencies
 ```
 
-## Usage
+## 🚀 Quickstart
+
+### 0) Install
+```bash
+git clone https://github.com/SNOWTEAM2023/Cognivia.git
+
+cd Cognivia
+pip install -r requirements.txt
+```
+
 
 
 ## 🔑 License
