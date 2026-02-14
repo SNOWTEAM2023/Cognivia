@@ -3,30 +3,17 @@
 </p>
 
 
-# Cognitive-Behavioral-Therapy
-## 数据集
 
-### PsyQA 完整数据集
 
-由于文件大小限制，PsyQA数据集通过百度网盘分享：
+### Overview
 
-**下载信息：**
--  **文件名称**: `PsyQA.zip`
--  **百度网盘链接**: https://pan.baidu.com/s/17om1k5uSVGCswdzV6-d6CQ?pwd=jh3d
--  **提取码**: `jh3d`
--  **文件说明**: 包含完整的PsyQA数据集
 
-### CBT_dataset_v2
-**从v1版本补充，从CBT-BOOK中筛选数据，提高了数据集数量**
 
-### filter_prompt.txt
-**用于从physa数据集中筛选并分类的prompt**
+### Dataset
+### Usage
+### Experiments
+## Main results
 
-### response_prompt.txt
-**用于给出理性回应的prompt**
+## Evaluation
 
-### prompt_pinggu.xlsx
-**评估筛选分类见表一，评估理性回应见表二**
 
-### test41.xlsx test70.xlsx
-**评估筛选分类过程**
