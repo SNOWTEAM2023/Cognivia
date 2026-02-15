@@ -1,14 +1,13 @@
 import pandas as pd
 from openai import OpenAI
 import time
-import os
 
-api_key = os.getenv("YOUR_API_KEY")
+# Replace with your SiliconFlow API token
+api_key = "your_siliconflow_api"
 
-INPUT_FILE = "test.xlsx"
+INPUT_FILE = "question.xlsx"
 OUTPUT_FILE = "Cognivia_response.xlsx"
 STATEMENT_COLUMN = "user1"
-
 client = OpenAI(
     api_key=api_key,
     base_url="https://api.siliconflow.cn/v1"
@@ -65,6 +64,4 @@ def analyze_batch():
 
 
 if __name__ == "__main__":
-
     analyze_batch()
-
