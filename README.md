@@ -88,12 +88,9 @@ Cognivia/
 │   └── CBT_Cognitive_Triplet_Dataset.xlsx # CBT Cognitive Triplet Dataset curated from CBT Literatures
 │
 ├── src/                        # Core implementation of Cognivia
-│   ├── __init__.py
-│   ├── config.py               # Configuration utilities
-│   ├── dataset.py              # Dataset & dataloader definitions
-│   ├── entropy_scorer.py       # Entropy-based scoring
-│   ├── gem_trainer.py          # GEM training pipeline
-│   └── sft_trainer.py          # Supervised fine-tuning (SFT) trainer
+│   ├── generate_distortion.py  #
+│   ├── generate_response.py    # 
+│   ├── model.py           # 
 │
 ├── materials/                  # Figures & assets for the paper
 ├── README.md                   # Project introduction and usage
