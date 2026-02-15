@@ -90,9 +90,9 @@ Cognivia/
 ├── src/                      
 │   ├── evaluation_with_8_dimensions.py    # Custom 8-dimension quality evaluation
 │   ├── evaluation_with_NLP.py   # NLP-based evaluation methods
+│   ├── fine-tuned_model_generate.py       # Generate responses using fine-tuned model
 │   ├── identify_distortion.py   # Identify cognitive distortions
 │   ├── generate_response.py     # Generate rational responses
-│   ├── fine-tuned_model_generate.py       # Generate responses using fine-tuned model
 │
 ├── materials/                  # Figures & assets for the paper
 ├── README.md                   # Project introduction and usage
