@@ -115,7 +115,7 @@ cd Cognivia
 pip install -r requirements.txt
 ```
 ### 1) Modify Tokens
-To use your own OpenAI, DeepSeek and SiliconFlow API tokens, replace the placeholders with your actual tokens. The relevant sections in the code have been left blank for this purpose.
+To use your own OpenAI, DeepSeek, or SiliconFlow API tokens, replace the placeholders with your actual tokens. The relevant sections in the code have been left blank for this purpose.
 ```bash
 # Replace with your OpenAI API token
 api_key = "your_openai_api"
@@ -124,11 +124,79 @@ api_key = "your_deepseek_api"
 # Replace with your SiliconFlow API token
 api_key = "your_siliconflow_api"
 ```
-### 3) Preprocess Dataset
+### 3) Augment Dataset
+The relevant sections in the code have been left blank to ensure the correct path is used.
+```bash
+# Replace with your path to the preprocessed dataset.
+psyqa_path = os.path.join(current_dir, "questions.xlsx")
+```
+Once the paths and tokens have been updated, run this file to get Augmented CBT Cognitive Triplet Dataset :
+```bash
+identify_distortion.py && generate_response.py
+```
+To meet the training requirements of the model, we transformed the data in the Augmented CBT Cognitive Triplet Dataset into the following format:
+```jsonl
+{"user1": "...", "assistant1": "..."}
+```
+### 6）Train
+We fine-tuned Qwen2.5-7B-Instruct using LoRA on SiliconFlow.
+The model is accessible via API with ID ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_625.
+You can try it out with the code I've included below.
+```bash
+from openai import OpenAI
 
+# Replace with your SiliconFlow API token
+api_key = "your_siliconflow_api"
 
+client = OpenAI(
+    api_key=api_key,
+    base_url="https://api.siliconflow.cn/v1"
+)
 
+FINE_TUNED_MODEL_ID = "ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_625"
+# Replace with your question
+test_user_input = ("Is my career short-lived? Feeling lost about the future.")
 
+response = client.chat.completions.create(
+    model=FINE_TUNED_MODEL_ID,
+    messages=[
+        {
+            "role": "system",
+            "content": """You are a cognitive behavioral therapy (CBT) psychologist.
+                          First, identify the type of cognitive distortion exhibited in the statement,
+                          and then provide a response containing the following five paragraphs, separated by blank lines:
+                          1.Empathy and Validation
+                          2.Cognitive Distortion Analysis
+                          3.Reflective Questions 
+                          4.CBT Exercise Recommendation 
+                          5.Encouragement and Next Steps.
+                          If it does not contain a cognitive distortion (e.g., casual conversation, general questions, or statements without distortions),
+                          switch to a natural, supportive conversation mode. Respond in a warm, counselor-like tone without analyzing distortions or following the five-paragraph structure.
+                       """
+        },
+        {
+            "role": "user",
+            "content": test_user_input
+        }
+    ],
+    temperature=0.2,
+    max_tokens=300
+)
+
+print("\n--- Model Analysis Results ---\n")
+print(response.choices[0].message.content)
+```
+### 5) Evaluation
+The relevant sections in the code have been left blank to ensure the correct path is used.
+```bash
+# Replace with your path to test dataset
+INPUT_FILE = os.path.join(current_dir, "test.xlsx")
+file2_path = os.path.join(current_dir, "test.xlsx")
+```
+Our work shows that Cognivia performs particularly well on CBT tasks, you can use the following for evaluation.
+```bash
+fine-tuned_model_generate.py && (evaluation_with_NLP.py & evaluation_with_8_dimensions.py &)
+```
 ## 🔑 License
 This work is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
 Commercial use is prohibited without a separate license agreement with the author.
