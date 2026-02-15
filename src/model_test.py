@@ -3,7 +3,7 @@ from openai import OpenAI
 import time
 import os
 
-api_key = os.getenv("BEARER_TOKEN")
+api_key = os.getenv("YOUR_API_KEY")
 
 INPUT_FILE = "test.xlsx"
 OUTPUT_FILE = "test_output.xlsx"
@@ -65,4 +65,5 @@ def analyze_batch():
 
 
 if __name__ == "__main__":
+
     analyze_batch()
