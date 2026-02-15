@@ -1,4 +1,4 @@
-import evaluate
+
 import pandas as pd
 import nltk
 import os
@@ -10,15 +10,15 @@ except LookupError:
     nltk.download('punkt')
     nltk.download('punkt_tab')
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-file1_path = os.path.join(script_dir, "Cogvinia_response.xlsx")
+file1_path = os.path.join(current_dir, "Cogvinia_response.xlsx")
 file1_column = "assistant1"
+# Replace with your path to test dataset
+file2_path = os.path.join(current_dir, "test.xlsx")
+file2_column = "assistant1"
 
-file2_path = os.path.join(script_dir, "test.xlsx")
-file2_column = "cbt_response"
-
-output_path = os.path.join(script_dir, "evaluation_with_NLP.xlsx")
+output_path = os.path.join(current_dir,  "evaluation_with_NLP.xlsx")
 
 print("Reading files...")
 print(f"Looking for: {file1_path}")
