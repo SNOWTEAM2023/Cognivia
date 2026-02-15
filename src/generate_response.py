@@ -10,9 +10,9 @@ class CBTProfessionalResponder:
     def __init__(self, model: str = "gpt-5-mini", random_seed: int = None):
         self.model = model
         self.random_seed = random_seed
-
         self.client = OpenAI(
-            api_key=os.environ.get("OPENAI_API_KEY"),
+            # Replace with your OpenAI API token
+            api_key=os.environ.get("your_openai_api"),
             base_url="https://api.openai.com/v1"
         )
         self.samples = None
@@ -34,9 +34,9 @@ class CBTProfessionalResponder:
         for i in indices:
             row = df.iloc[i]
             sample = {
-                "question": row['question'] if 'question' in df.columns else row.get('Thought/Statement', ''),
-                "distortion": row['distortion'] if 'distortion' in df.columns else row.get('cognitive_distortions', ''),
-                "response": row.get('rational_response', row.get('response', ''))
+                "question": row['Thought/Statement'],
+                "cognitive_distortions": row['Cognitive Distortion'],
+                "rational_response": row['Rational Response']
             }
             samples.append(sample)
 
@@ -54,8 +54,8 @@ class CBTProfessionalResponder:
             for i, sample in enumerate(self.samples, 1):
                 examples_text += f"\nExample {i}:\n"
                 examples_text += f"Question: {sample['question']}\n"
-                examples_text += f"Cognitive Distortion: {sample['distortion']}\n"
-                examples_text += f"Professional Response: {sample['response']}\n"
+                examples_text += f"Cognitive Distortion: {sample['cognitive_distortions']}\n"
+                examples_text += f"Professional Response: {sample['rational_response']}\n"
 
         prompt = f"""You are a cognitive behavioral therapy (CBT) psychologist. Based on the patient's type of cognitive distortion and specific situation, please provide a professional and compassionate response. Your primary goal is to establish a safe atmosphere of trust and understanding, ensuring your reply includes the following CBT components, appropriately segmented, and connecting each part in an organized and fluid manner.
 
@@ -141,8 +141,8 @@ Output Format (JSON):
 
         for idx, row in data_df.iterrows():
             try:
-                question = row['question']
-                distortion = row['distortion']
+                question = row['Thought']
+                distortion = row['Cognitive Distortion']
 
                 print(f"Processing [{idx + 1}/{total}]: {question[:50]}...")
 
@@ -155,9 +155,9 @@ Output Format (JSON):
                                                                    str(response)))
 
                 result = {
-                    "question": question,
-                    "distortion": distortion,
-                    "cbt_response": cbt_response,
+                    "Thought": question,
+                    "Cognitive Distortion": distortion,
+                    "Rational Response": cbt_response,
                 }
                 results.append(result)
 
@@ -166,9 +166,9 @@ Output Format (JSON):
             except Exception as e:
                 print(f"Error processing record {idx + 1}: {e}")
                 results.append({
-                    "question": str(row.get('question', '')),
-                    "distortion": str(row.get('distortion', '')),
-                    "cbt_response": f"Processing failed: {str(e)}",
+                    "Thought": str(row.get('Thought', '')),
+                    "Cognitive Distortion": str(row.get('Cognitive Distortion', '')),
+                    "Rational Response": f"Processing failed: {str(e)}",
                 })
 
         results_df = pd.DataFrame(results)
@@ -183,7 +183,8 @@ def main():
     responder = CBTProfessionalResponder(model="gpt-5-mini", random_seed=42)
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    sample_file = os.path.join(current_dir, "CBT_Cognitive_Triplet_Dataset.xlsx")
+
+    sample_file= os.path.join(current_dir, "..","data","CBT_Cognitive_Triplet_Dataset.xlsx")
     data_file = os.path.join(current_dir, "distortion.xlsx")
     output_file = os.path.join(current_dir, "response.xlsx")
 
