@@ -6,7 +6,7 @@ import os
 api_key = os.getenv("YOUR_API_KEY")
 
 INPUT_FILE = "test.xlsx"
-OUTPUT_FILE = "test_output.xlsx"
+OUTPUT_FILE = "Cognivia_response.xlsx"
 STATEMENT_COLUMN = "user1"
 
 client = OpenAI(
@@ -67,3 +67,4 @@ def analyze_batch():
 if __name__ == "__main__":
 
     analyze_batch()
+
