@@ -39,6 +39,11 @@ The pipeline of our model is shown in Fig. 1 which consists of three stages:
 [*Augmented CBT Cognitive Triplet Dataset*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/Augtd_CBT_Cognitive_Triplet_Dataset.xlsx).
 - **(3) Task-oriented LoRA Fine-tuning**: Fine-tuning large language models by *Augmented CBT Cognitive Triplet Dataset* to obtain **Cognivia** for cognitive distortion identification and rational response generation.
 
+
+
+## 🌈Data Preprocessing
+
+
 ## 📊 Dataset
 1. [**CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx): 
 Our work is based on authoritative texts that are widely regarded as core paradigms and standard
@@ -109,6 +114,18 @@ git clone https://github.com/SNOWTEAM2023/Cognivia.git
 cd Cognivia
 pip install -r requirements.txt
 ```
+### 1) Modify Tokens
+To use your own OpenAI, DeepSeek and SiliconFlow API tokens, replace the placeholders with your actual tokens. The relevant sections in the code have been left blank for this purpose.
+```bash
+# Replace with your OpenAI API token
+api_key = "your_openai_api"
+# Replace with your DeepSeek API token
+api_key = "your_deepseek_api"
+# Replace with your SiliconFlow API token
+api_key = "your_siliconflow_api"
+```
+### 3) Preprocess Dataset
+
 
 
 
