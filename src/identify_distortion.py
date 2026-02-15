@@ -135,12 +135,12 @@ def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     # Replace with your DeepSeek API token
     analyzer = CBTAnalyzer(api_key="your_deepseek_api")
+    # Replace with your path to the preprocessed dataset.
     psyqa_path = os.path.join(current_dir, "questions.xlsx")
     psyqa_df = pd.read_excel(psyqa_path)
     questions = psyqa_df['Question'].tolist()
 
     print(f"Loaded {len(questions)} questions to analyze")
-    # Replace with your DeepSeek API token
     samples_path = os.path.join(current_dir,"..","data","CBT_Cognitive_Triplet_Dataset.xlsx")
     results = analyzer.analyze_batch(
         questions=questions,
@@ -164,7 +164,6 @@ def main():
         'Thought': results_df['question'],
         'Cognitive Distortion': results_df['distortion']
     })
-
     output_path = os.path.join(current_dir, "distortion.xlsx")
 
     final_df.to_excel(output_path, index=False, engine='openpyxl')
