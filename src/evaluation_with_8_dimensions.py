@@ -7,7 +7,8 @@ from openai import OpenAI
 import time
 import os
 
-api_key = os.getenv("YOUR_API_KEY")
+# Replace with your SiliconFlow API token
+api_key = "your_siliconflow_api"
 client = OpenAI(
     api_key=api_key,
     base_url="https://api.siliconflow.cn/v1"
@@ -281,9 +282,10 @@ def batch_evaluate_excel(input_file, text_column, output_file, model="Qwen/Qwen2
 
 
 if __name__ == "__main__":
-    INPUT_FILE = "evaluate.xlsx"
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    INPUT_FILE = os.path.join(current_dir, "Cognivia_response.xlsx")
     TEXT_COLUMN = "cbt_response"
-    OUTPUT_FILE = "evaluation_with_8_dimensions.xlsx"
+    OUTPUT_FILE = os.path.join(current_dir, "evaluation_with_8_dimensions.xlsx")
     MODEL = "Qwen/Qwen2.5-7B-Instruct"
 
     try:
