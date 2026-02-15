@@ -4,8 +4,8 @@ import time
 
 # Replace with your SiliconFlow API token
 api_key = "your_siliconflow_api"
-
-INPUT_FILE = "question.xlsx"
+# Replace with your path to test dataset
+INPUT_FILE = "test.xlsx"
 OUTPUT_FILE = "Cognivia_response.xlsx"
 STATEMENT_COLUMN = "user1"
 client = OpenAI(
