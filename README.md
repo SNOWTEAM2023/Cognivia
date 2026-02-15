@@ -140,7 +140,7 @@ To meet the training requirements of the model, we transformed the data in the A
 ```
 ### 6）Train
 We fine-tuned Qwen2.5-7B-Instruct using LoRA on SiliconFlow.
-The model is accessible via API with ID ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_625.
+The model is accessible via API with ID [**ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_625**].
 You can try it out with the code I've included below.
 ```bash
 from openai import OpenAI
@@ -153,7 +153,7 @@ client = OpenAI(
     base_url="https://api.siliconflow.cn/v1"
 )
 
-FINE_TUNED_MODEL_ID = "ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_625"
+FINE_TUNED_MODEL_ID = "ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_62"
 # Replace with your question
 test_user_input = ("Is my career short-lived? Feeling lost about the future.")
 
