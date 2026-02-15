@@ -79,18 +79,20 @@ The code structure and corresponding comments of this repository are as follows:
 
 ```
 Cognivia/
-├── Cognivia.py                      # Main entry script for running Cognivia
+├── Cognivia.py                 # Main entry script for running Cognivia
 ├── prompts
-│   ├── filter_prompt.txt       # Prompt_1 of CBT Cognitive Triplet Dataset Augmentation (Cognitve Distortion Labelling)
-│   └── response_prompt.txt     # Prompt_2 of CBT Cognitive Triplet Dataset Augmentation (Rational Pesponse Generation)
+│   ├── filter_prompt.txt       # Prompt_1 of CBT Cognitive Triplet Dataset Augmentation (Cognitive Distortion Labelling)
+│   └── response_prompt.txt     # Prompt_2 of CBT Cognitive Triplet Dataset Augmentation (Rational Response Generation)
 │
 ├── data/                       
 │   └── CBT_Cognitive_Triplet_Dataset.xlsx # CBT Cognitive Triplet Dataset curated from CBT Literatures
 │
-├── src/                        # Core implementation of Cognivia
-│   ├── generate_distortion.py  #
-│   ├── generate_response.py    # 
-│   ├── model.py           # 
+├── src/                      
+│   ├── evaluation_with_8_dimensions.py    # Custom 8-dimension quality evaluation
+│   ├── evaluation_with_NLP.py   # NLP-based evaluation methods
+│   ├── identify_distortion.py   # Identify cognitive distortions
+│   ├── generate_response.py     # Generate rational responses
+│   ├── fine-tuned_model_generate.py       # Generate responses using fine-tuned model
 │
 ├── materials/                  # Figures & assets for the paper
 ├── README.md                   # Project introduction and usage
