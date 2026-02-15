@@ -8,8 +8,7 @@ from typing import List, Dict
 
 
 class CBTAnalyzer:
-
-    def __init__(self, api_key: str = "your_deepseek_api", model: str = "deepseek-chat"):
+    def __init__(self, api_key, model: str = "deepseek-chat"):
         self.api_key = api_key
         self.model = model
         self.base_url = "https://api.deepseek.com/v1"
@@ -20,8 +19,8 @@ class CBTAnalyzer:
 
         for _, row in df.iterrows():
             sample = {
-                "problem": row['Thought/Statement'],
-                "cognitive_distortions": row['cognitive_distortions']
+                "question": row['Thought/Statement'],
+                "cognitive_distortions": row['Cognitive Distortion'],
             }
             samples.append(sample)
 
@@ -31,7 +30,7 @@ class CBTAnalyzer:
 
         few_shot_examples = ""
         for i, sample in enumerate(random.sample(samples, min(10, len(samples))), 1):
-            few_shot_examples += f"{i}. Question: {sample['problem']}\n   Cognitive Distortions: {sample['cognitive_distortions']}\n\n"
+            few_shot_examples += f"{i}. Question: {sample['question']}\n   Cognitive Distortions: {sample['cognitive_distortions']}\n\n"
         system_prompt = f"""You are a CBT psychologist.And analyze cognitive distortions and output in ENGLISH ONLY.
 
 Cognitive Distortion Types:
@@ -134,14 +133,15 @@ If no distortions found, use empty list: "distortions": []"""
 
 def main():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    analyzer = CBTAnalyzer(api_key="your_api_key")
+    # Replace with your DeepSeek API token
+    analyzer = CBTAnalyzer(api_key="your_deepseek_api")
     psyqa_path = os.path.join(current_dir, "questions.xlsx")
     psyqa_df = pd.read_excel(psyqa_path)
-    questions = psyqa_df['question'].tolist()
+    questions = psyqa_df['Question'].tolist()
 
     print(f"Loaded {len(questions)} questions to analyze")
-
-    samples_path = os.path.join(current_dir, "CBT_Cognitive_Triplet_Dataset.xlsx")
+    # Replace with your DeepSeek API token
+    samples_path = os.path.join(current_dir,"..","data","CBT_Cognitive_Triplet_Dataset.xlsx")
     results = analyzer.analyze_batch(
         questions=questions,
         samples_path=samples_path,
@@ -161,8 +161,8 @@ def main():
     )
 
     final_df = pd.DataFrame({
-    'Thought': results_df['question'],  
-    'Cognitive Distortion': results_df['distortion'] 
+        'Thought': results_df['question'],
+        'Cognitive Distortion': results_df['distortion']
     })
 
     output_path = os.path.join(current_dir, "distortion.xlsx")
@@ -171,21 +171,11 @@ def main():
     print(f"Analysis complete! Results saved to: {output_path}")
     print(f"Exported {len(final_df)} questions with cognitive distortions")
 
-    distortion_freq = final_df['distortion'].value_counts()
-    print("\n" + "=" * 50)
-    print("CBT Analysis Statistics Report")
-    print("=" * 50)
-    print(f"Total questions: {len(questions)}")
-    print(f"Questions with cognitive distortions: {len(final_df)} ({len(final_df) / len(questions) * 100:.1f}%)")
-    print(f"Questions without cognitive distortions: {len(questions) - len(final_df)} ({(len(questions) - len(final_df)) / len(questions) * 100:.1f}%)")
-    print(f"Cognitive distortion type distribution:")
+    print(f"Analysis complete! Results saved to: {output_path}")
+    print(f"Exported {len(final_df)} questions with cognitive distortions")
 
-    for distortion, count in distortion_freq.items():
-        percentage = (count / len(final_df)) * 100
-        print(f"  {distortion}: {count} ({percentage:.1f}%)")
     return final_df
 
 
 if __name__ == "__main__":
     final_results = main()
-
