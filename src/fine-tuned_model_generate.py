@@ -1,12 +1,14 @@
 import pandas as pd
 from openai import OpenAI
 import time
-
+import os
 # Replace with your SiliconFlow API token
 api_key = "your_siliconflow_api"
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
 # Replace with your path to test dataset
-INPUT_FILE = "test.xlsx"
-OUTPUT_FILE = "Cognivia_response.xlsx"
+INPUT_FILE = os.path.join(current_dir, "test.xlsx")
+OUTPUT_FILE = os.path.join(current_dir, "Cognivia_response.xlsx")
 STATEMENT_COLUMN = "user1"
 client = OpenAI(
     api_key=api_key,
@@ -17,10 +19,11 @@ FINE_TUNED_MODEL_ID = "ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt
 
 
 def analyze_batch():
-    df = pd.read_excel(INPUT_FILE)
+    df = pd.read_excel(INPUT_FILE, usecols=[STATEMENT_COLUMN])
 
-    if 'assistant1' not in df.columns:
-        df['assistant1'] = ""
+    df = df.rename(columns={STATEMENT_COLUMN: 'user1'})
+
+    df['assistant1'] = ""
 
     for i in range(len(df)):
         if df.at[i, 'assistant1']:
@@ -61,6 +64,7 @@ def analyze_batch():
 
     df.to_excel(OUTPUT_FILE, index=False)
     print(f"Completed! Results saved to: {OUTPUT_FILE}")
+    print(f"Output file contains columns: {list(df.columns)}")
 
 
 if __name__ == "__main__":
