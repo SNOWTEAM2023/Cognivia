@@ -9,7 +9,7 @@ from typing import List, Dict
 
 class CBTAnalyzer:
 
-    def __init__(self, api_key: str = "YOUR_API_KEY", model: str = "deepseek-chat"):
+    def __init__(self, api_key: str = "your_deepseek_api", model: str = "deepseek-chat"):
         self.api_key = api_key
         self.model = model
         self.base_url = "https://api.deepseek.com/v1"
@@ -161,9 +161,10 @@ def main():
     )
 
     final_df = pd.DataFrame({
-        'question': results_df['question'],
-        'distortion': results_df['distortion']
+    'Thought': results_df['question'],  
+    'Cognitive Distortion': results_df['distortion'] 
     })
+
     output_path = os.path.join(current_dir, "distortion.xlsx")
 
     final_df.to_excel(output_path, index=False, engine='openpyxl')
@@ -187,3 +188,4 @@ def main():
 
 if __name__ == "__main__":
     final_results = main()
+
