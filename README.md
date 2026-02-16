@@ -42,6 +42,20 @@ The pipeline of our model is shown in Fig. 1 which consists of three stages:
 
 
 ## 🌈Data Preprocessing
+We construct the CBT Cognitive Triplet Dataset based on [PsyQA](https://github.com/thu-coai/PsyQA)
+## Stage 1: Cognitive Distortion Identification
+From the original PsyQA dataset (~22K samples), we selected 9,437 question samples exhibiting cognitive distortions through a carefully designed prompt-based filtering process.
+Model: DeepSeek
+Prompt: [filter_prompt.txt](prompts/filter_prompt.txt) (Prompt1 Version 2)​
+Script: [identify_distortion.py](src/identify_distortion.py)
+## Stage 2: Rational Response Generation
+We applied a structured prompt-based generation procedure to construct the CBT Cognitive Triplet Dataset, resulting in 9,437 validated samples.
+Model: ChatGPT (GPT-5 mini) 
+Prompt: [response_prompt.txt](prompts/response_prompt.txt) (Prompt2 Version 3)
+Script: [generate_response.py](src/generate_response.py)
+
+
+
 
 
 ## 📊 Dataset
