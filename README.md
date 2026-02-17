@@ -33,7 +33,7 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Xuejiao
 </p>
     <p><em>Figure 1:  The overall framework of Cognivia.</em></p >
 
-The pipeline of our model is shown in Fig. 1 which consists of three stages: 
+The pipeline of our model is shown in Fig. 1, which consists of three stages: 
 - **(1) CBT Expert Seed Curation**: Curate CBT literatures to form high quality [*CBT Cognitive Triplet Dataset*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx) as reference seed.
 - **(2) CBT Cognitive Triplet Dataset Augmentation**: Multi-stage prompting and structured generation to augment mental health questions from PsyQA dataset to generate
 [*Augmented CBT Cognitive Triplet Dataset*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/Augtd_CBT_Cognitive_Triplet_Dataset.xlsx).
