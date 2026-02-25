@@ -54,7 +54,7 @@ Script: [identify_distortion.py](src/identify_distortion.py)
 ### Stage 2: Rational Response Generation
 We applied a structured prompt-based generation procedure to construct the CBT Cognitive Triplet Dataset, resulting in 9,437 validated samples.
 
-Model: ChatGPT (GPT-5 mini) 
+Model: ChatGPT (GPT-5 Mini) 
 
 Prompt: [response_prompt.txt](prompts/response_prompt.txt) (Prompt2 Version 3)
 
