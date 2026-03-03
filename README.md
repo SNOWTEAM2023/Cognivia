@@ -153,7 +153,7 @@ identify_distortion.py && generate_response.py
 ```
 To meet the training requirements of the model, we transformed the data in the Augmented CBT Cognitive Triplet Dataset into the following format:
 ```jsonl
-{"user1": "...", "assistant1": "..."}
+{"user": "...", "assistant": "..."}
 ```
 ### 6）Train
 We fine-tuned Qwen2.5-7B-Instruct using LoRA on SiliconFlow.
