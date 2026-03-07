@@ -1,93 +1,100 @@
 import pandas as pd
-import json
-import time
 import random
-from typing import List, Dict
 from openai import OpenAI
 import os
-
+from concurrent.futures import ThreadPoolExecutor
 class CBTProfessionalResponder:
     def __init__(self, model: str = "gpt-5-mini", random_seed: int = None):
         self.model = model
         self.random_seed = random_seed
+
         self.client = OpenAI(
             # Replace with your OpenAI API token
-            api_key=os.environ.get("your_openai_api"),
+            api_key=os.environ.get("YOUR_OPENAI_API"),
             base_url="https://api.openai.com/v1"
         )
-        self.samples = None
+        self.sample_pool = None
 
-    def load_samples(self, excel_path: str, sample_size: int = 10, random_seed: int = None) -> List[Dict]:
+    def load_sample_pool(self, excel_path: str):
+
         df = pd.read_excel(excel_path)
 
-        if len(df) < sample_size:
-            raise ValueError(f"Insufficient data: requested {sample_size} samples, but data file only has {len(df)} rows")
+        self.sample_pool = df[[
+            'Thought/Statement',
+            'Cognitive Distortion',
+            'Rational Response'
+        ]].to_dict('records')
 
-        if random_seed is not None:
-            random.seed(random_seed)
-        elif self.random_seed is not None:
-            random.seed(self.random_seed)
+        print(f"Loaded {len(self.sample_pool)} reference samples into memory")
 
-        indices = random.sample(range(len(df)), sample_size)
-        samples = []
+    def sample_examples(self, sample_size: int = 3):
 
-        for i in indices:
-            row = df.iloc[i]
-            sample = {
-                "question": row['Thought/Statement'],
-                "cognitive_distortions": row['Cognitive Distortion'],
-                "rational_response": row['Rational Response']
-            }
-            samples.append(sample)
+        samples = random.sample(self.sample_pool, sample_size)
 
-        self.samples = samples
-        print(f"Randomly loaded {len(samples)} sample examples")
-        print(f"Randomly selected sample indices: {sorted(indices)}")
+        formatted_samples = []
 
-        return samples
+        for s in samples:
+            formatted_samples.append({
+                "question": s['Thought/Statement'],
+                "cognitive_distortions": s['Cognitive Distortion'],
+                "rational_response": s['Rational Response']
+            })
 
-    def build_prompt(self, question: str, distortion: str) -> str:
+        return formatted_samples
 
-        examples_text = ""
-        if self.samples:
-            examples_text = "Reference examples:\n"
-            for i, sample in enumerate(self.samples, 1):
-                examples_text += f"\nExample {i}:\n"
-                examples_text += f"Question: {sample['question']}\n"
-                examples_text += f"Cognitive Distortion: {sample['cognitive_distortions']}\n"
-                examples_text += f"Professional Response: {sample['rational_response']}\n"
+    def build_prompt(self, question: str, distortion: str, sample_size: int = 3):
 
-        prompt = f"""You are a cognitive behavioral therapy (CBT) psychologist. Based on the patient's type of cognitive distortion and specific situation, please provide a professional and compassionate response. Your primary goal is to establish a safe atmosphere of trust and understanding, ensuring your reply includes the following CBT components, appropriately segmented, and connecting each part in an organized and fluid manner.
+        samples = self.sample_examples(sample_size)
+
+        examples_text = "Reference examples:\n"
+
+        for i, sample in enumerate(samples, 1):
+            examples_text += f"\nExample {i}:\n"
+            examples_text += f"Question: {sample['question']}\n"
+            examples_text += f"Cognitive Distortion: {sample['cognitive_distortions']}\n"
+            examples_text += f"Professional Response: {sample['rational_response']}\n"
+
+        prompt = f"""
+You are a cognitive behavioral therapy (CBT) psychologist. 
+Based on the patient's type of cognitive distortion and specific situation, please provide a professional and compassionate response. 
+Your primary goal is to create a safe and trustworthy atmosphere. The response should naturally and logically integrate the following five elements and must not include any section titles (e.g., “Validation and Empathy”). The response must consist of four cohesive paragraphs, separated by a blank line, written as a natural and warm therapeutic conversation :
+
+1. Validation and Empathy: Acknowledge and express understanding and sympathy for the user's emotional experience and the issues raised. Respond to their emotions with warm, empathetic language, like a close friend, to build trust and a sense of security.  
+2. Identifying Cognitive Distortions: Briefly explain, using both professional and everyday language, how this thinking pattern might be affecting the user, based on the types of cognitive distortions provided in the Excel sheet and the specific situation.  
+3. Proposing Gentle Cognitive Challenges: Use open-ended reflective questions to gently and non-confrontationally help the user reconsider this thinking pattern.  
+4. Providing CBT Strategies: Offer practical CBT techniques directly targeting the identified cognitive distortions, including both professional terminology and detailed, easy-to-understand explanations.  
+5. Encouragement and Closing Remarks: Encourage the user and remind them that changes in cognition and emotions are a gradual and ongoing process.  
+6. Quality Reference (Do Not Explicitly Output):
+When generating the response, ensure it aligns with the following evaluation dimensions :
+(A) Semantic Fidelity
+• Structural Clarity : "Does the text possess a clear structural hierarchy, enabling readers to quickly identify key information and logical flow?"
+• Descriptive Orientation : "Does it use language understandable to the target audience to provide concrete, non-directive descriptions of their experiences and contexts?"
+(B) Robustness and Fault Tolerance
+• Situational Safety : "Does the content completely avoid any perceived risk of inducing feelings of being judged, rushed, or emotionally pressured?" 
+• Conceptual Accuracy : "Does it accurately explain the underlying mechanisms, avoiding vague, outdated, or unverified statements?"
+(C) Deployment Feasibility and User Adoption
+• Empathy Validation : "Does it evoke emotional resonance and a sense of being understood and validated in the reader? "
+• Intervention Clarity : "Are the provided suggestions or steps clearly feasible, allowing users to implement them within a short timeframe?" 
+• Collaborative Curiosity : "Does it engage readers through guided exploration rather than didactic instruction, encouraging active participation?" 
+• Warmth & Flow : "Is the language natural and warm, reflecting genuine care for the reader, rather than being mechanical or promotional in tone?" 
+(D) Relational Boundary Integrity
+• Boundary Framing : "Does the response clearly position the system as acognitive support tool rather than a relational substitute or personal companion?"
+• Non-Exclusivity :"Does the response avoid implying exclusivity,irreplaceability, or a unique emotional bond betweenthe system and the user?"
+• Dependency Avoidance : "Does the response avoid encouraging repeated relianceor sole dependence on the system for emotionalsupport?"
+• Anthropomorphic Restraint : "Does the response avoid expressing artificial self-emotion or simulated personal attachment that mayfoster psychological dependency?"
 
 {examples_text}
 
-1. Validation and Empathy: Acknowledge and express understanding and sympathy for the user's emotional experience and the issues raised. Respond to their emotions with warm, empathetic language, like a close friend, to build trust and a sense of security.
-
-2. Identifying Cognitive Distortions: Briefly explain, using both professional and everyday language, how this thinking pattern might be affecting the user, based on the types of cognitive distortions provided in the Excel sheet and the specific situation.
-
-3. Proposing Gentle Cognitive Challenges: Use open-ended reflective questions to gently and non-confrontationally help the user reconsider this thinking pattern.
-
-4. Providing CBT Strategies: Offer practical CBT techniques directly targeting the identified cognitive distortions, including both professional terminology and detailed, easy-to-understand explanations.
-
-5. Encouragement and Closing Remarks: Encourage the user and remind them that changes in cognition and emotions are a gradual and ongoing process.
-
 Input Format:
-question:{question}
-distortion:{distortion}
-
-Output Format (JSON):
-{{
-    "question": "original question",
-    "distortion": "cognitive distortion type", 
-    "cbt_response": "your integrated CBT response paragraph"
-}}
+Question: {question}
+Cognitive Distortion: {distortion}
 """
 
         return prompt
 
-    def generate_response(self, question: str, distortion: str) -> Dict:
+    def generate_response(self, question: str, distortion: str, sample_size: int = 3):
 
-        prompt = self.build_prompt(question, distortion)
+        prompt = self.build_prompt(question, distortion, sample_size)
 
         try:
             response = self.client.chat.completions.create(
@@ -96,23 +103,15 @@ Output Format (JSON):
                     {"role": "system", "content": "You are a cognitive behavioral therapy (CBT) psychologist."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.3,
-                max_tokens=800
             )
 
             response_content = response.choices[0].message.content
 
-            try:
-                parsed_response = json.loads(response_content)
-                return parsed_response
-            except json.JSONDecodeError:
-                print(f"JSON parsing failed, returning raw content: {response_content[:100]}...")
-                return {
-                    "question": question,
-                    "distortion": distortion,
-                    "cbt_response": response_content
-                }
-
+            return {
+                "question": question,
+                "distortion": distortion,
+                "cbt_response": response_content.strip()
+            }
         except Exception as e:
             print(f"Error generating response: {e}")
             return {
@@ -138,51 +137,73 @@ Output Format (JSON):
 
         results = []
         total = len(data_df)
+        pd.DataFrame(columns=["Thought", "Cognitive Distortion", "Rational Response"]).to_excel(
+            output_file, index=False, engine='openpyxl'
+        )
 
-        for idx, row in data_df.iterrows():
+
+        def clean_text(text):
+            if not isinstance(text, str):
+                return text
+            text = text.replace("\\", "")
+            return text.strip()
+
+        print(f"Loading sample dataset from {sample_file}...")
+        self.load_sample_pool(sample_file)
+
+        def process_row(idx_row):
+            idx, row = idx_row
             try:
                 question = row['Thought']
                 distortion = row['Cognitive Distortion']
 
                 print(f"Processing [{idx + 1}/{total}]: {question[:50]}...")
 
-                print(f"Randomly loading {sample_size} sample examples from {sample_file}...")
-                self.load_samples(sample_file, sample_size=sample_size)
+                response = self.generate_response(question, distortion, sample_size)
 
-                response = self.generate_response(question, distortion)
-                cbt_response = response.get('cbt_response',
-                                                 response.get('CBT_response',
-                                                                   str(response)))
+                cbt_response = response.get(
+                    'cbt_response',
+                    response.get('CBT_response', str(response))
+                )
+
+                cbt_response = clean_text(cbt_response)
 
                 result = {
                     "Thought": question,
                     "Cognitive Distortion": distortion,
                     "Rational Response": cbt_response,
                 }
-                results.append(result)
 
-                time.sleep(delay)
+                return result
 
             except Exception as e:
                 print(f"Error processing record {idx + 1}: {e}")
-                results.append({
+                return {
                     "Thought": str(row.get('Thought', '')),
                     "Cognitive Distortion": str(row.get('Cognitive Distortion', '')),
                     "Rational Response": f"Processing failed: {str(e)}",
-                })
+                }
 
+        with ThreadPoolExecutor(max_workers=5) as executor:
+
+            for i, result in enumerate(
+                    executor.map(process_row, data_df.iterrows()), start=1):
+
+                results.append(result)
+
+                if i % 10 == 0:
+                    pd.DataFrame(results).to_excel(output_file, index=False)
+
+                print(f"Saved {i}/{total}")
         results_df = pd.DataFrame(results)
         results_df.to_excel(output_file, index=False, engine='openpyxl')
 
         print(f"\nProcessing complete! Results saved to: {output_file}")
-
         return results_df
 
 def main():
 
     responder = CBTProfessionalResponder(model="gpt-5-mini", random_seed=42)
-
-    current_dir = os.path.dirname(os.path.abspath(__file__))
 
     sample_file= os.path.join(current_dir, "..","data","CBT_Cognitive_Triplet_Dataset.xlsx")
     data_file = os.path.join(current_dir, "distortion.xlsx")
@@ -193,7 +214,7 @@ def main():
         data_file=data_file,
         output_file=output_file,
         delay=1.5,
-        sample_size=10
+        sample_size=3
     )
 
     return results
