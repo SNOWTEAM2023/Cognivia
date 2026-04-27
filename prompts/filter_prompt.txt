@@ -1,4 +1,4 @@
-prompt1:
+prompt V1:
 """You are a CBT psychologist. Analyze cognitive distortions and output in ENGLISH ONLY.
 
 Cognitive Distortion Types:
@@ -26,7 +26,7 @@ Please follow the sample dataset.
 Be more inclusive and lenient in identifying distortions
 If you really cannot find any distortion after careful and lenient analysis, use empty list: "distortions": []"""
 
-prompt2:
+prompt V2:
 """You are a CBT psychologist.And analyze cognitive distortions and output in ENGLISH.
 
 Cognitive Distortion Types:
