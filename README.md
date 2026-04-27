@@ -40,7 +40,7 @@ The pipeline of our model is shown in Fig. 1, which consists of three stages:
 - **(3) Task-oriented LoRA Fine-tuning**: Fine-tuning large language models by *Augmented CBT Cognitive Triplet Dataset* to obtain **Cognivia** for cognitive distortion identification and rational response generation.
 
 
-## 📊 Dataset
+## 📊 Dataset Preparation
 1. [**CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx): 
 Our work is based on authoritative texts that are widely regarded as core paradigms and standard
 references in CBT.
