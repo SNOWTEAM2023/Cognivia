@@ -40,27 +40,6 @@ The pipeline of our model is shown in Fig. 1, which consists of three stages:
 - **(3) Task-oriented LoRA Fine-tuning**: Fine-tuning large language models by *Augmented CBT Cognitive Triplet Dataset* to obtain **Cognivia** for cognitive distortion identification and rational response generation.
 
 
-
-## 🌈Data Preprocessing
-We construct the CBT Cognitive Triplet Dataset based on [PsyQA](https://github.com/thu-coai/PsyQA)
-### Stage 1: Cognitive Distortion Identification
-From the original PsyQA dataset (~22K samples), we selected 9,437 question samples exhibiting cognitive distortions through a carefully designed prompt-based filtering process.
-
-Model: DeepSeek
-
-Prompt: [filter_prompt.txt](prompts/filter_prompt.txt) (Prompt1 Version 2)​
-
-Script: [identify_distortion.py](src/identify_distortion.py)
-### Stage 2: Rational Response Generation
-We applied a structured prompt-based generation procedure to construct the CBT Cognitive Triplet Dataset, resulting in 9,437 validated samples.
-
-Model: ChatGPT (GPT-5 Mini) 
-
-Prompt: [response_prompt.txt](prompts/response_prompt.txt) (Prompt2 Version 3)
-
-Script: [generate_response.py](src/generate_response.py)
-
-
 ## 📊 Dataset
 1. [**CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx): 
 Our work is based on authoritative texts that are widely regarded as core paradigms and standard
@@ -83,13 +62,33 @@ related to psychological concerns as the following form:
 
 ```jsonl
 {"Question": "...", "Answer": "..."}
-```
 
-For each question **𝑞𝑖** in PsyQA, we employ the DeepSeek with expert-designed
-[*prompt_1*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/prompts/filter_prompt.txt) to identify the
-corresponding cognitive distortion **𝑑𝑖**, and use ChatGPT with
-[*prompt_2*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/prompts/response_prompt.txt) to generate a
-corresponding rational response **𝑟𝑖**.
+```
+⚠️ Note that, the original PsyQA dataset cannot be directly redistributed due to its usage policy.
+To ensure compliance, we provide the complete pipeline for constructing the Augmented CBT Cognitive Triplet Dataset from the original data.
+Users need to apply for the official certificate and downloading the PsyQA dataset from its original source before running our preprocessing scripts.
+
+For each question **𝑞𝑖** in PsyQA, we employ the DeepSeek and GPT-5 Mini with two-stage data preprocessing to construct the Augmented CBT Cognitive Triplet Dataset with 9,437 samples:
+
+- #### Stage 1: Cognitive Distortion Identification
+From the original PsyQA dataset (~22K samples), we selected 9,437 question samples exhibiting cognitive distortions through a designed prompt-based filtering process.
+We use an expert-designed *prompt_1* to identify the corresponding cognitive distortion **𝑑𝑖**.
+
+Model: DeepSeek
+
+Prompt: [filter_prompt.txt](prompts/filter_prompt.txt) (Prompt1 Version 2)​
+
+Script: [identify_distortion.py](src/identify_distortion.py)
+
+- #### Stage 2: Rational Response Generation
+We use GPT-5 Mini with *prompt_2* to generate a corresponding rational response **𝑟𝑖**.
+
+Model: GPT-5 Mini
+
+Prompt: [response_prompt.txt](prompts/response_prompt.txt) (Prompt2 Version 3)
+
+Script: [generate_response.py](src/generate_response.py)
+
 The form of this *Augmented CBT Cognitive Triplet Dataset*:
 
 ```jsonl
