@@ -36,7 +36,7 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Xuejiao
 The pipeline of our model is shown in Fig. 1, which consists of three stages: 
 - **(1) CBT Expert Seed Curation**: Curate CBT literatures to form high quality [*CBT Cognitive Triplet Dataset*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/CBT_Cognitive_Triplet_Dataset.xlsx) as reference seed.
 - **(2) CBT Cognitive Triplet Dataset Augmentation**: Multi-stage prompting and structured generation to augment mental health questions from PsyQA dataset to generate
-[*Augmented CBT Cognitive Triplet Dataset*](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/Augtd_CBT_Cognitive_Triplet_Dataset.xlsx).
+*Augmented CBT Cognitive Triplet Dataset*.
 - **(3) Task-oriented LoRA Fine-tuning**: Fine-tuning large language models by *Augmented CBT Cognitive Triplet Dataset* to obtain **Cognivia** for cognitive distortion identification and rational response generation.
 
 
@@ -54,7 +54,7 @@ The form of this *CBT Cognitive Triplet Dataset*:
 {"Thought": "...", "Cognitive Distortion": "...", "Rational Response": "..."}
 ```
 
-2. [**Augmented CBT Cognitive Triplet Dataset**](https://github.com/SNOWTEAM2023/Cognivia/blob/main/data/Augtd_CBT_Cognitive_Triplet_Dataset.xlsx):
+2. **Augmented CBT Cognitive Triplet Dataset**:
 This dataset is based on [**PsyQA**](https://github.com/thu-coai/PsyQA), 
 a large-scale psychological question-answering dataset collected from publicly accessible
 online mental health forums. PsyQA consists of anonymized user-generated question–answer pairs
