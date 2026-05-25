@@ -4,8 +4,6 @@
 
 💻 This is the official implementation of paper **Cognivia: An AI Therapist for Evidence-Based Cognitive Behavioral Therapy**.
 
-✅ This paper has been submitted to [**The 32nd SIGKDD Conference on Knowledge Discovery and Data Mining -AI for Sciences Track (KDD) 2026**](https://kdd2026.kdd.org/ai4sciences-track-call-for-papers/).
-
 **Cognivia** (or **“可薇”** in Chinese) is an evidence-based artificial intelligence therapist for cognitive behavioral therapy (CBT) that integrates automatic cognitive distortion identification and rational response generation.
 
 #### Authors
