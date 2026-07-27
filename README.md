@@ -210,7 +210,7 @@ file2_path = os.path.join(current_dir, "test.xlsx")
 ```
 Our work shows that Cognivia performs particularly well on CBT tasks, you can use the following for evaluation.
 ```bash
-fine-tuned_model_generate.py && (evaluation_with_NLP.py & evaluation_with_8_dimensions.py &)
+fine-tuned_model_generate.py && (evaluation_with_NLP.py & evaluate_with_existing_criteria.py & evaluation_with_CogEval_criteria.py &)
 ```
 ## 🔑 License
 This work is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
