@@ -106,8 +106,9 @@ Cognivia/
 ├── data/                       
 │   └── CBT_Cognitive_Triplet_Dataset.xlsx # CBT Cognitive Triplet Dataset curated from CBT Literatures
 │
-├── src/                      
-│   ├── evaluation_with_8_dimensions.py    # Custom 8-dimension quality evaluation
+├── src/
+│   ├── evaluate_with_existing_criteria.py    # Custom existing criteria evaluation                  
+│   ├── evaluation_with_CogEval_criteria.py    # Custom our designed CogEval criteria evaluation
 │   ├── evaluation_with_NLP.py   # NLP-based evaluation methods
 │   ├── fine-tuned_model_generate.py       # Generate responses using fine-tuned model
 │   ├── identify_distortion.py   # Identify cognitive distortions
