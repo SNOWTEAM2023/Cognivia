@@ -7,7 +7,7 @@
 **Cognivia** (or **“可薇”** in Chinese) is an evidence-based artificial intelligence therapist for cognitive behavioral therapy (CBT) that integrates automatic cognitive distortion identification and rational response generation.
 
 #### Authors
-Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Xuejiao Zhao*](https://zxjwudi.github.io/xuejiaozhao/)
+Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wang](https://cs.scu.edu.cn/info/1282/19847.htm),[Yuan Shi](https://www.sciconf.cn/cn/person-detail/56?user_id=uo1rJxUMaRkcC3VQckZ5YA_d_d),[Haocong Rao](https://github.com/HaocongRao),[Xuejiao Zhao*](https://zxjwudi.github.io/xuejiaozhao/)
 
 **	Southwest Petroleum University &nbsp; | &nbsp; 	University of Groningen &nbsp; |&nbsp; Nanyang Technological University**
 
