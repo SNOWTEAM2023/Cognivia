@@ -23,11 +23,9 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
 ## :fire: News
 * **[2026.02.01]** We release github repository of **Cognivia**. 💪 Have a try！
 
-
-
 ## 🧭 Framework Overview
 <p align="center">
-  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/overview.jpg" width="1000">
+  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/overview.pdf" width="1000">
 </p>
     <p><em>Figure 1:  The overall framework of Cognivia.</em></p >
 
