@@ -17,7 +17,7 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
   <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/Cognivia_UI.png" width="600">
 </p>
 
-![GitHub stars](https://img.shields.io/github/stars/SNOWTEAM2023/Cognivia)
+[![Stargazers repo roster](https://reporoster.com/stars/light/notext/SNOWTEAM2023/Cognivia.svg)](https://github.com/SNOWTEAM2023/Cognivia/stargazers)
 
 
 ## :fire: News
