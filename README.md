@@ -11,7 +11,7 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
 
 **Sichuan University & Southwest Petroleum University  &nbsp; | &nbsp; 	University of Groningen &nbsp; |&nbsp; Sichuan University &nbsp; |&nbsp; West China Hospital, Sichuan University &nbsp; |&nbsp; Nanyang Technological University &nbsp; |&nbsp; Sichuan University **
 
-\† Corresponding author
+† Corresponding author
 
 <p align="center">
   <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/Cognivia_UI.png" width="600">
