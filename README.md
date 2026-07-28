@@ -2,14 +2,14 @@
   <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/cognivia.png" width="300">
 </p>
 
-💻 This is the official implementation of paper **Cognivia: An AI Therapist for Evidence-Based Cognitive Behavioral Therapy**.
+💻 This is the official implementation of paper **A Cognitive Behavioral Therapy Copilot for Evidence-Based Mental Healthcare**.
 
 **Cognivia** (or **“可薇”** in Chinese) is an evidence-based artificial intelligence therapist for cognitive behavioral therapy (CBT) that integrates automatic cognitive distortion identification and rational response generation.
 
 #### Authors
 Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wang](https://cs.scu.edu.cn/info/1282/19847.htm),[Yuan Shi](https://www.sciconf.cn/cn/person-detail/56?user_id=uo1rJxUMaRkcC3VQckZ5YA_d_d),[Haocong Rao](https://github.com/HaocongRao),[Xuejiao Zhao*](https://zxjwudi.github.io/xuejiaozhao/)
 
-**	Southwest Petroleum University &nbsp; | &nbsp; 	University of Groningen &nbsp; |&nbsp; Sichuan University &nbsp; |&nbsp; West China Hospital, Sichuan University &nbsp; |&nbsp; Nanyang Technological University &nbsp; |&nbsp; Sichuan University **
+**Sichuan University & Southwest Petroleum University  &nbsp; | &nbsp; 	University of Groningen &nbsp; |&nbsp; Sichuan University &nbsp; |&nbsp; West China Hospital, Sichuan University &nbsp; |&nbsp; Nanyang Technological University &nbsp; |&nbsp; Sichuan University **
 
 \* Corresponding author
 
@@ -17,11 +17,11 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
   <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/Cognivia_UI.png" width="600">
 </p>
 
-[![Stargazers repo roster for @SNOWTEAM2023/Cognivia](https://reporoster.com/stars/light/notext/SNOWTEAM2023/Cognivia)](https://github.com/SNOWTEAM2023/Cognivia/stargazers)
+![GitHub stars](https://img.shields.io/github/stars/SNOWTEAM2023/Cognivia)
 
 
 ## :fire: News
-* **[2026.02.01]** We release github repository of **Cognivia**. 💪 Have a try！
+* **[2026.02.01]** We release github repository of **Cognivia**. 💪 Have a try!
 
 ## 🧭 Framework Overview
 <p align="center">
