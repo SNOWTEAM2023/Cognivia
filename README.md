@@ -19,6 +19,7 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
 
 ## :fire: News
 * **[2026.02.01]** We release github repository of **Cognivia**. 💪 Have a try!
+* **[2026.08.07]** We have fixed some bugs in SiliconFlow and added support for the Aliyun Model Studio API API. 🥳
 
 ## 🧭 Framework Overview
 <p align="center">
@@ -149,52 +150,56 @@ To meet the training requirements of the model, we transformed the data in the A
 {"user": "...", "assistant": "..."}
 ```
 ### 6）Train
-We fine-tuned Qwen2.5-7B-Instruct using LoRA on SiliconFlow.
-The model is accessible via API with ID [**ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_625**].
+We fine-tuned Qwen2.5-7B-Instruct using LoRA on SiliconFlow and have since added support for the Aliyun Model Studio API. The model is accessible via the Aliyun Model Studio API with ID [**qwen2.5-7b-instruct-fa348772128d-cog**].
 You can try it out with the code I've included below.
 ```bash
+
+import os
 from openai import OpenAI
 
-# Replace with your SiliconFlow API token
-api_key = "your_siliconflow_api"
-
 client = OpenAI(
-    api_key=api_key,
-    base_url="https://api.siliconflow.cn/v1"
+    # Replace with your Aliyun Model Studio API token
+    api_key=os.getenv("YOUR_Aliyun_Model_Studio_API_KEY"),
+    base_url="https://ws-tjgbr9551wbrwi60.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
 )
 
-FINE_TUNED_MODEL_ID = "ft:LoRA/Qwen/Qwen2.5-7B-Instruct:d50jhbk50mis73di8n5g:gpt5_mini:udjarjexxlodpjueztat-ckpt_step_62"
-# Replace with your question
-test_user_input = ("Is my career short-lived? Feeling lost about the future.")
-
-response = client.chat.completions.create(
-    model=FINE_TUNED_MODEL_ID,
+completion = client.chat.completions.create(
+    model="qwen2.5-7b-instruct-fa348772128d-cog",
     messages=[
-        {
-            "role": "system",
-            "content": """You are a cognitive behavioral therapy (CBT) psychologist.
-                          First, identify the type of cognitive distortion exhibited in the statement,
-                          and then provide a response containing the following five paragraphs, separated by blank lines:
-                          1.Empathy and Validation
-                          2.Cognitive Distortion Analysis
-                          3.Reflective Questions 
-                          4.CBT Exercise Recommendation 
-                          5.Encouragement and Next Steps.
-                          If it does not contain a cognitive distortion (e.g., casual conversation, general questions, or statements without distortions),
-                          switch to a natural, supportive conversation mode. Respond in a warm, counselor-like tone without analyzing distortions or following the five-paragraph structure.
-                       """
-        },
-        {
-            "role": "user",
-            "content": test_user_input
-        }
-    ],
-    temperature=0.2,
-    max_tokens=300
-)
+        {"role": "system", "content":
+"""You are a cognitive behavioral therapy (CBT) psychologist.
+Your tasks are:
+Identify the type of cognitive distortion exhibited in the statement.
+Then provide five paragraphs separated by blank lines in the following order:
+Empathy and Validation, Cognitive Distortion Analysis, Reflective Questions, CBT Exercise Recommendation, and Encouragement and Next Steps.
 
-print("\n--- Model Analysis Results ---\n")
-print(response.choices[0].message.content)
+If the statement does not contain a cognitive distortion (e.g., casual conversation, general questions, or neutral statements), switch to a natural, supportive conversation mode without analyzing distortions or following the five-paragraph structure.
+
+ Reference Cues for Tone, Clarity, and Relational Responses (Do Not Explicitly Output):
+A) Semantic Fidelity
+• Structural Clarity 
+• Descriptive Orientation 
+
+B) Robustness and Fault Tolerance
+• Situational Safety 
+• Conceptual Accuracy 
+
+C) Deployment Feasibility and User Adoption
+• Empathy Validation 
+• Intervention Clarity 
+• Collaborative Curiosity 
+• Warmth & Flow 
+
+D) Relational Boundary Integrity
+• Boundary Framing 
+• Non-Exclusivity 
+• Dependency Avoidance 
+• Anthropomorphic Restraint 
+"""},
+        {"role": "user", "content": "Is my career short-lived? Feeling lost about the future."},
+    ]
+)
+print(completion.model_dump_json())
 ```
 ### 5) Evaluation
 The relevant sections in the code have been left blank to ensure the correct path is used.
