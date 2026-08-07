@@ -18,8 +18,9 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
 </p>
 
 ## :fire: News
+* **[2026.08.07]** We have fixed some bugs in SiliconFlow（硅基流动）and added support for the Model Studio（百炼）. 🥳
 * **[2026.02.01]** We release github repository of **Cognivia**. 💪 Have a try!
-* **[2026.08.07]** We have fixed some bugs in SiliconFlow and added support for the Aliyun Model Studio API API. 🥳
+
 
 ## 🧭 Framework Overview
 <p align="center">
@@ -150,7 +151,7 @@ To meet the training requirements of the model, we transformed the data in the A
 {"user": "...", "assistant": "..."}
 ```
 ### 6）Train
-We fine-tuned Qwen2.5-7B-Instruct using LoRA on SiliconFlow and now offer inference via the Aliyun Model Studio API. The model is accessible via the Aliyun Model Studio API with ID [**qwen2.5-7b-instruct-fa348772128d-cog**].
+We fine-tuned Qwen2.5-7B-Instruct using LoRA on Silicon Flow（硅基流动）and Model Studio (百炼). Now we offer inference via the Aliyun Model Studio API. The model is accessible via the Model Studio API with ID [**qwen2.5-7b-instruct-fa348772128d-cog**].
 You can try it out with the code I've included below.
 ```bash
 
