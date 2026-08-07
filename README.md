@@ -151,7 +151,7 @@ To meet the training requirements of the model, we transformed the data in the A
 {"user": "...", "assistant": "..."}
 ```
 ### 6）Train
-We fine-tuned Qwen2.5-7B-Instruct using LoRA on Silicon Flow（硅基流动）and Model Studio (百炼). Now we offer inference via the Aliyun Model Studio API. The model is accessible via the Model Studio API with ID [**qwen2.5-7b-instruct-fa348772128d-cog**].
+We fine-tuned Qwen2.5-7B-Instruct using LoRA on Silicon Flow（硅基流动）and Model Studio （百炼）. Now we offer inference via the Aliyun Model Studio API. The model is accessible via the Model Studio API with ID [**qwen2.5-7b-instruct-fa348772128d-cog**].
 You can try it out with the code I've included below.
 ```bash
 
