@@ -76,7 +76,12 @@ def compute_bleu_selected(predictions, references):
 
     return results
 
-def compute_glue_score(predictions, references):
+def compute_composite_score(predictions, references):
+    """Weighted blend of TF-IDF cosine similarity, ROUGE and BLEU.
+
+    NOTE: this is a project-specific composite, NOT the GLUE benchmark
+    (Wang et al., 2018), which is an unrelated nine-task NLU suite.
+    """
     try:
         vectorizer = TfidfVectorizer(max_features=1000).fit(predictions + references)
         pred_vecs = vectorizer.transform(predictions)
@@ -111,7 +116,7 @@ def compute_glue_score(predictions, references):
             'bleu': 0.25
         }
 
-        glue_score = (
+        composite_score = (
             weights['semantic'] * semantic_similarity +
             weights['rouge1'] * np.mean(rouge1_scores) +
             weights['rouge2'] * np.mean(rouge2_scores) +
@@ -119,21 +124,21 @@ def compute_glue_score(predictions, references):
             weights['bleu'] * (bleu.score / 100.0)
         )
 
-        return {"GLUE": glue_score}
+        return {"Composite": composite_score}
 
     except Exception as e:
-        print(f"GLUE score calculation failed: {e}")
-        return {"GLUE": 0}
+        print(f"Composite score calculation failed: {e}")
+        return {"Composite": 0}
 
 print("Calculating evaluation metrics...")
 rouge_results = compute_rouge(preds, refs)
 bleu_results = compute_bleu_selected(preds, refs)
-glue_results = compute_glue_score(preds, refs)
+composite_results = compute_composite_score(preds, refs)
 
 all_results = {
     **rouge_results,
     **bleu_results,
-    **glue_results,
+    **composite_results,
     "sample_count": min_len
 }
 
@@ -152,7 +157,7 @@ print(f"  ROUGE-2:  {all_results.get('rouge2', 0):.4f}")
 print(f"  ROUGE-L:  {all_results.get('rougeL', 0):.4f}")
 print(f"  BLEU-1:   {all_results.get('bleu1', 0):.4f}")
 print(f"  BLEU-2:   {all_results.get('bleu2', 0):.4f}")
-print(f"  GLUE:     {all_results.get('GLUE', 0):.4f}")
+print(f"  Composite: {all_results.get('Composite', 0):.4f}")
 
 results_df = pd.DataFrame([all_results])
 results_df.to_excel(output_path, index=False)
