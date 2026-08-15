@@ -1,0 +1,14 @@
+# Cognivia dependencies
+# openai>=1.0 is required: the scripts import APIStatusError and
+# RateLimitError from the top-level package and use the client-object
+# API, neither of which exists in the 0.x series.
+openai>=1.0.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+requests>=2.31.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+rouge-score>=0.1.2
+sacrebleu>=2.4.0
+nltk>=3.8.1
+tqdm>=4.66.0
