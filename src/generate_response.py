@@ -205,6 +205,7 @@ def main():
 
     responder = CBTProfessionalResponder(model="gpt-5-mini", random_seed=42)
 
+    current_dir = os.path.dirname(os.path.abspath(__file__))
     sample_file= os.path.join(current_dir, "..","data","CBT_Cognitive_Triplet_Dataset.xlsx")
     data_file = os.path.join(current_dir, "distortion.xlsx")
     output_file = os.path.join(current_dir, "response.xlsx")

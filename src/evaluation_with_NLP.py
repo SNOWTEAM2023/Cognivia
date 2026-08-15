@@ -12,7 +12,7 @@ except LookupError:
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-file1_path = os.path.join(current_dir, "Cogvinia_response.xlsx")
+file1_path = os.path.join(current_dir, "Cognivia_response.xlsx")
 file1_column = "assistant1"
 # Replace with your path to test dataset
 file2_path = os.path.join(current_dir, "test.xlsx")
