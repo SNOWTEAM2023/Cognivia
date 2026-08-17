@@ -2,7 +2,9 @@
   <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/cognivia.png" width="300">
 </p>
 
-💻 This is the official implementation of paper **A Cognitive Behavioral Therapy Copilot for Evidence-Based Mental Healthcare**.
+<a href='https://arxiv.org/abs/2607.25681'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
+
+💻 This is the official implementation of paper [*A Cognitive Behavioral Therapy Copilot for Evidence-Based Mental Healthcare*](https://arxiv.org/abs/2607.25681).
 
 **Cognivia** (or **“可薇”** in Chinese) is an evidence-based artificial intelligence therapist for cognitive behavioral therapy (CBT) that integrates automatic cognitive distortion identification and rational response generation.
 
@@ -18,8 +20,10 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
 </p>
 
 ## :fire: News
+* **[2026.08.17]** Please check the latest paper version on [arXiv](https://arxiv.org/abs/2607.25681).
 * **[2026.08.07]** We have fixed some bugs in SiliconFlow (硅基流动) and added support for the Model Studio (阿里云百炼). 🥳
 * **[2026.02.01]** We release github repository of **Cognivia**. 💪 Have a try!
+
 
 
 ## 🧭 Framework Overview
@@ -213,6 +217,24 @@ Our work shows that Cognivia performs particularly well on CBT tasks, you can us
 ```bash
 fine-tuned_model_generate.py && (evaluation_with_NLP.py & evaluate_with_existing_criteria.py & evaluation_with_CogEval_criteria.py &)
 ```
+
+
+## 📖 Citation
+
+If you find our work useful, please consider citing our papers:
+
+```bibtex
+@misc{chen2026cogniviacognitivebehavioraltherapy,
+      title={Cognivia: A Cognitive Behavioral Therapy Copilot for Evidence-Based Mental Healthcare}, 
+      author={Qi Chen and Siria Xiyueyao Luo and Jian Wang and Yuan Shi and Haocong Rao and Xuejiao Zhao},
+      year={2026},
+      eprint={2607.25681},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2607.25681}, 
+}
+
+
 ## 🔑 License
 This work is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
 Commercial use is prohibited without a separate license agreement with the author.
