@@ -99,13 +99,14 @@ The code structure and corresponding comments of this repository are as follows:
 
 ```
 Cognivia/
-├── Cognivia.py                 # Main entry script for running Cognivia
 ├── prompts
 │   ├── filter_prompt.txt       # Prompt_1 of CBT Cognitive Triplet Dataset Augmentation (Cognitive Distortion Labelling)
 │   └── response_prompt.txt     # Prompt_2 of CBT Cognitive Triplet Dataset Augmentation (Rational Response Generation)
 │
 ├── data/                       
-│   └── CBT_Cognitive_Triplet_Dataset.xlsx # CBT Cognitive Triplet Dataset curated from CBT Literatures
+│   ├── CBT_Cognitive_Triplet_Dataset.xlsx # CBT Cognitive Triplet Dataset curated from CBT Literatures
+│   ├── test41.xlsx             # Distortion-identification test split
+│   └── test70.xlsx             # Distortion-identification test split
 │
 ├── src/
 │   ├── evaluate_with_existing_criteria.py    # Custom existing criteria evaluation                  

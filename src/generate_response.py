@@ -7,6 +7,8 @@ class CBTProfessionalResponder:
     def __init__(self, model: str = "gpt-5-mini", random_seed: int = None):
         self.model = model
         self.random_seed = random_seed
+        if random_seed is not None:
+            random.seed(random_seed)
 
         self.client = OpenAI(
             # Replace with your OpenAI API token
@@ -19,17 +21,31 @@ class CBTProfessionalResponder:
 
         df = pd.read_excel(excel_path)
 
+        total = len(df)
+        # Only rows with an actual Rational Response are usable as few-shot
+        # examples; 200 of the 318 seed rows have that cell blank.
+        df = df.dropna(subset=['Rational Response'])
+        df = df[df['Rational Response'].astype(str).str.strip() != '']
+
         self.sample_pool = df[[
             'Thought/Statement',
             'Cognitive Distortion',
             'Rational Response'
         ]].to_dict('records')
 
-        print(f"Loaded {len(self.sample_pool)} reference samples into memory")
+        if not self.sample_pool:
+            raise ValueError(
+                f"No usable seed rows in {excel_path}: "
+                "every 'Rational Response' cell is empty"
+            )
+
+        print(f"Loaded {len(self.sample_pool)} reference samples into memory "
+              f"({total - len(self.sample_pool)} of {total} skipped: "
+              f"empty Rational Response)")
 
     def sample_examples(self, sample_size: int = 3):
 
-        samples = random.sample(self.sample_pool, sample_size)
+        samples = random.sample(self.sample_pool, min(sample_size, len(self.sample_pool)))
 
         formatted_samples = []
 
@@ -205,6 +221,7 @@ def main():
 
     responder = CBTProfessionalResponder(model="gpt-5-mini", random_seed=42)
 
+    current_dir = os.path.dirname(os.path.abspath(__file__))
     sample_file= os.path.join(current_dir, "..","data","CBT_Cognitive_Triplet_Dataset.xlsx")
     data_file = os.path.join(current_dir, "distortion.xlsx")
     output_file = os.path.join(current_dir, "response.xlsx")
