@@ -99,7 +99,6 @@ The code structure and corresponding comments of this repository are as follows:
 
 ```
 Cognivia/
-├── Cognivia.py                 # Main entry script for running Cognivia
 ├── prompts
 │   ├── filter_prompt.txt       # Prompt_1 of CBT Cognitive Triplet Dataset Augmentation (Cognitive Distortion Labelling)
 │   └── response_prompt.txt     # Prompt_2 of CBT Cognitive Triplet Dataset Augmentation (Rational Response Generation)
