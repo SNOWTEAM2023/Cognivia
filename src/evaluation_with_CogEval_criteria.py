@@ -220,8 +220,8 @@ def format_excel(path):
 if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__))
     INPUT_FILE = os.path.join(current_dir, "Cognivia_response.xlsx")
-    TEXT_COLUMN = "assistant"
-    OUTPUT_FILE = os.path.join(current_dir, "evaluation_with_12_dimensions.xlsx")
+    TEXT_COLUMN = "assistant1"
+    OUTPUT_FILE = os.path.join(current_dir, "evaluation_with_CogEval_criteria.xlsx")
     df = batch_evaluate_excel(
         INPUT_FILE,
         TEXT_COLUMN,
