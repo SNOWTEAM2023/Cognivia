@@ -20,7 +20,8 @@ Qi Chen, [Siria Xiyueyao Luo](https://www.rug.nl/staff/x.luo/?lang=en), [Jian Wa
 </p>
 
 ## :fire: News
-* **[2026.08.17]** Please check the latest paper version on [arXiv](https://arxiv.org/abs/2607.25681).
+* **[2026.08.22]** We have resolved the missing requirements issue and improved the repository documentation and code comments. 
+* **[2026.08.17]** Please check the latest paper version on [arXiv](https://arxiv.org/abs/2607.25681). 
 * **[2026.08.07]** We have fixed some bugs in SiliconFlow (硅基流动) and added support for the Model Studio (阿里云百炼). 🥳
 * **[2026.02.01]** We release github repository of **Cognivia**. 💪 Have a try!
 
