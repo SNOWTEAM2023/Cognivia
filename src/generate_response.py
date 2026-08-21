@@ -3,6 +3,9 @@ import random
 from openai import OpenAI
 import os
 from concurrent.futures import ThreadPoolExecutor
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
 class CBTProfessionalResponder:
     def __init__(self, model: str = "gpt-5-mini", random_seed: int = None):
         self.model = model
