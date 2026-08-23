@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/cognivia.png" width="300">
+  <img src="https://github.com/SNOWTEAM2023/Cognivia/blob/main/materials/Cognivia.png" width="300">
 </p>
 
 <a href='https://arxiv.org/abs/2607.25681'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a>
